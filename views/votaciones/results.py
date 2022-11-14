@@ -6,6 +6,7 @@ from settings import URL_VOTACIONES
 
 results_bp = Blueprint("results_blueprint", __name__)
 
+
 @results_bp.route("", methods=["GET"])
 def get_all():
     response = requests.get(
@@ -20,6 +21,7 @@ def get_all():
         return jsonify({
             "messags": "se presento un error"
         })
+
 
 @results_bp.route("<string:id_results>", methods=["GET"])
 def get_by_id(id_results):
