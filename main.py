@@ -4,6 +4,8 @@ from flask_jwt_extended import JWTManager, create_access_token, verify_jwt_in_re
 from flask import Flask, jsonify, request
 import requests
 import datetime
+from views.votaciones import party_bp, candidates_bp, results_bp, tables_bp
+
 
 
 app = Flask(__name__)
@@ -72,6 +74,12 @@ def middleware():
                 return jsonify({
                     "msg": "Recurso no autorizado"
                 }), 403
+
+
+app.register_blueprint(party_bp, url_prefix="/party")
+app.register_blueprint(candidates_bp, url_prefix="/candidates")
+app.register_blueprint(tables_bp, url_prefix="/tables")
+app.register_blueprint(results_bp, url_prefix="/results")
 
 
 if (__name__ == "__main__"):
