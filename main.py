@@ -82,7 +82,7 @@ app.register_blueprint(tables_bp, url_prefix="/tables")
 app.register_blueprint(results_bp, url_prefix="/results")
 
 
-if (__name__ == "__main__"):
+if __name__ == "__main__":
     app.run(
         host=URL,
         port=PORT,
