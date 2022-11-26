@@ -6,8 +6,6 @@ import requests
 import datetime
 from views.votaciones import party_bp, candidates_bp, results_bp, tables_bp
 
-
-
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
 jwt = JWTManager(app)
@@ -27,7 +25,7 @@ def login():
         "Content-Type": "application/json"
     }
     response = requests.post(
-        url=f"{URL_SECURITY}/users/auth",
+        url="http://localhost:8082/users/auth",
         json=body,
         headers=headers
     )
@@ -49,11 +47,9 @@ def login():
 
 
 def validate_permission(role_id, url, method) -> bool:
-    """
-    :return: si tiene permiso de acceso al recurso
-    """
+
     response = requests.post(
-        f"{URL_SECURITY}/role-permission/validate/role/{role_id}",
+        "http://localhost:8082/role-permission/validate/role/"+role_id,
         json={
             "url": url,
             "method": method

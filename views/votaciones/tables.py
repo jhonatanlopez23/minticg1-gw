@@ -6,10 +6,11 @@ from settings import URL_VOTACIONES
 
 tables_bp = Blueprint("tables_blueprint", __name__)
 
+
 @tables_bp.route("", methods=["GET"])
 def get_all():
     response = requests.get(
-        url=f"{URL_VOTACIONES}/tables",
+        url="http://127.0.0.1:5001/tables",
         headers={
             "Content-Type": "application/json"
         }
@@ -21,6 +22,7 @@ def get_all():
         return jsonify({
             "messags": "se presento un error"
         })
+
 
 @tables_bp.route("<string:id_tables>", methods=["GET"])
 def get_by_id(id_tables):
